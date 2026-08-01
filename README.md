@@ -3,10 +3,14 @@
 A deliberately tiny Wear OS interval timer. Open it and it runs forever:
 
 ```
-GET READY 3s  ->  WORK 45s  ->  REST 90s  ->  WORK 45s  ->  REST 90s  ->  ...
+GET READY 3s  ->  WORK 60s  ->  REST 120s  ->  WORK 60s  ->  REST 120s  ->  ...
 ```
 
 Built for a OnePlus Watch 2R (Wear OS 4), personal use.
+
+60s caps a set near 30 reps at normal calisthenics tempo, which is where hypertrophy per set
+starts falling off. 120s is where extra inter set rest stops paying for itself. Treat the 60s
+as a ceiling, not a target: if you hit true failure early, stop and let the rest run.
 
 - Distinct vibration on every phase change: double buzz for WORK, one long buzz for REST.
 - Screen stays on while the app is open.

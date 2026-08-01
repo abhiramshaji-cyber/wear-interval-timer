@@ -14,8 +14,8 @@ import kotlin.math.ceil
 
 enum class Phase(val label: String, val seconds: Int) {
     READY("GET READY", 3),
-    WORK("WORK", 45),
-    REST("REST", 90),
+    WORK("WORK", 60),
+    REST("REST", 120),
 }
 
 class TimerViewModel(app: Application) : AndroidViewModel(app) {
