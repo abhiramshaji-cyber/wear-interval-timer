@@ -15,6 +15,7 @@ as a ceiling, not a target: if you hit true failure early, stop and let the rest
 - Distinct vibration on every phase change: double buzz for WORK, one long buzz for REST.
 - Screen stays on while the app is open.
 - Tap anywhere to pause or resume.
+- Long press anywhere to reset back to GET READY and start the cycle over.
 - Close the app to stop. Nothing runs in the background.
 
 ## Getting the APK

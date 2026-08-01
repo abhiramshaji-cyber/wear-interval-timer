@@ -8,6 +8,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.ceil
@@ -30,9 +32,23 @@ class TimerViewModel(app: Application) : AndroidViewModel(app) {
         private set
 
     private val haptics = Haptics(app)
+    private var loop: Job? = null
 
     init {
-        viewModelScope.launch {
+        reset()
+    }
+
+    fun togglePause() {
+        running = !running
+    }
+
+    /** Restarts the whole cycle from GET READY, un-pausing if paused. */
+    fun reset() {
+        val previous = loop
+        loop = viewModelScope.launch {
+            // Must fully die before the new loop starts, or its last tick stomps the reset state.
+            previous?.cancelAndJoin()
+            running = true
             runPhase(Phase.READY)
             var next = Phase.WORK
             while (true) {
@@ -40,10 +56,6 @@ class TimerViewModel(app: Application) : AndroidViewModel(app) {
                 next = if (next == Phase.WORK) Phase.REST else Phase.WORK
             }
         }
-    }
-
-    fun togglePause() {
-        running = !running
     }
 
     // Subtracts measured elapsed time rather than counting ticks, so delay() jitter never accumulates.

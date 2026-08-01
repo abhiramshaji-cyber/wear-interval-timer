@@ -4,8 +4,9 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,6 +28,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TimerScreen(vm: TimerViewModel = viewModel()) {
     val accent = when (vm.phase) {
@@ -38,7 +40,10 @@ fun TimerScreen(vm: TimerViewModel = viewModel()) {
         modifier = Modifier
             .fillMaxSize()
             .background(Color.Black)
-            .clickable { vm.togglePause() },
+            .combinedClickable(
+                onClick = { vm.togglePause() },
+                onLongClick = { vm.reset() },
+            ),
         contentAlignment = Alignment.Center,
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
