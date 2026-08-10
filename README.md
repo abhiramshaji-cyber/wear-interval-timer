@@ -6,6 +6,8 @@ A deliberately tiny Wear OS interval timer. Open it and it runs forever:
 GET READY 3s  ->  WORK 60s  ->  REST 120s  ->  WORK 60s  ->  REST 120s  ->  ...
 ```
 
+The 60s and 120s are defaults; both are adjustable in the app.
+
 Built for a OnePlus Watch 2R (Wear OS 4), personal use.
 
 60s caps a set near 30 reps at normal calisthenics tempo, which is where hypertrophy per set
@@ -16,6 +18,9 @@ as a ceiling, not a target: if you hit true failure early, stop and let the rest
 - Screen stays on while the app is open.
 - Tap anywhere to pause or resume.
 - Long press anywhere to reset back to GET READY and start the cycle over.
+- Tap **SETTINGS** to change the work and rest durations in 5s steps, from 5s up to 10:00. The
+  timer pauses while the panel is open; **DONE** (or a swipe back) saves and restarts the cycle
+  from GET READY. Durations persist on the watch across restarts.
 - Close the app to stop. Nothing runs in the background.
 
 ## Getting the APK
@@ -49,5 +54,5 @@ Requires JDK 17 and the Android SDK.
 
 ## Changing the intervals
 
-Edit the `Phase` enum in
-[`app/src/main/java/com/abhiram/intervaltimer/TimerViewModel.kt`](app/src/main/java/com/abhiram/intervaltimer/TimerViewModel.kt).
+Use the in-app **SETTINGS** panel. The defaults (60s work, 120s rest) live in
+[`app/src/main/java/com/abhiram/intervaltimer/Intervals.kt`](app/src/main/java/com/abhiram/intervaltimer/Intervals.kt).
