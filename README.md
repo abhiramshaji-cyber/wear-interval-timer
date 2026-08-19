@@ -56,3 +56,11 @@ Requires JDK 17 and the Android SDK.
 
 Use the in-app **SETTINGS** panel. The defaults (60s work, 120s rest) live in
 [`app/src/main/java/com/abhiram/intervaltimer/Intervals.kt`](app/src/main/java/com/abhiram/intervaltimer/Intervals.kt).
+
+## Contributing
+
+Issues and pull requests are welcome. Please test on a round display and say which watch you used. See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+## Licence
+
+MIT. See [LICENSE](LICENSE).
